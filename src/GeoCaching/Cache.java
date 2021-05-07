@@ -9,7 +9,7 @@ public class Cache {
 
     public Point GPS;
 
-    public ArrayList<Item> Items;
+    public ArrayList<Item> Items = new ArrayList<>();
 
     public String PontoInteresse;
 
@@ -22,7 +22,6 @@ public class Cache {
     public Cache(Integer id, Point GPS,  String pontoInteresse, String dificuldade, ArrayList<Log> logs) {
         Id = id;
         this.GPS = GPS;
-        Items = items;
         PontoInteresse = pontoInteresse;
         Dificuldade = dificuldade;
         Logs = logs;

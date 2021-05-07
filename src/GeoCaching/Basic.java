@@ -1,11 +1,9 @@
 package GeoCaching;
 
-import java.util.ArrayList;
-
 public class Basic extends Utilizador {
 
-    public Basic(int ID, String nome, ArrayList items) {
-        super(ID, nome, items);
+    public Basic(int ID, String nome) {
+        super(ID, nome);
     }
 
     public Cache procurarCache() {

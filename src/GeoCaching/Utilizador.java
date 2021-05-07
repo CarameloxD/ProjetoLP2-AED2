@@ -29,6 +29,13 @@ public abstract class Utilizador {
         Nome = nome;
     }
 
+    public void trocarItems(Cache c, Item i1, Item i2) {
+        if (c.Items.contains(i1)) {
+            c.Items.set(c.Items.indexOf(i1), i2);
+            this.Items.set(this.Items.indexOf(i2), i1);
+        }
+    }
+
     //Getter e Setter
     public int getID() {
         return ID;
@@ -47,7 +54,7 @@ public abstract class Utilizador {
     }
 
     public ArrayList getItems() {
-        return Items;
+      return Items;
     }
 
     public void setItems(ArrayList items) {

@@ -1,11 +1,9 @@
 package GeoCaching;
 
-import java.util.ArrayList;
-
 public class Premium extends Basic {
 
-    public Premium(int ID, String nome, ArrayList items) {
-        super(ID, nome, items);
+    public Premium(int ID, String nome) {
+        super(ID, nome);
     }
 
     public void criarTravelBug() {

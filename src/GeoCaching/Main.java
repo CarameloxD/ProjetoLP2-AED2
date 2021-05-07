@@ -28,6 +28,24 @@ public class Main {
 
 
     public static void main(String[] args) {
+        //ArrayList<Item> items = new ArrayList<Item>();
+        Admin admin = new Admin(1, "Nuno");
+
+        Cache cache = new Cache(1, null, null, "", null);
+
+        Item item = new Item("test", admin, null);
+        Item item1 = new Item("test1", null, cache);
+        var items = admin.getItems();
+        items.add(item1);
+
+        cache.Items.add(item);
+        admin.trocarItems(cache,item,item1);
+        admin.trocarItems(cache,item1,item);
+        var item2 = (Item) admin.getItems().get(0);
+        System.out.println(item2.Descricao);
+    }
+
+    private void PopulateItems(){
 
     }
 }
