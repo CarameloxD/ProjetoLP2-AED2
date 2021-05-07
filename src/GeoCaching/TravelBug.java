@@ -1,29 +1,23 @@
 package GeoCaching;
 
+import java.util.ArrayList;
+
 public class TravelBug extends Item {
 
     public Point GPS;
 
     public String Objetivo;
 
-    public Utilizador utilizador;
-
-    public void CriarObjetivo() {
-    }
-
-    public Utilizador UtilizadorAtual() {
-        return null;
-    }
+    public ArrayList<Log> Historico;
 
     //Constructor
 
-    public TravelBug(Integer id, String descricao, Utilizador utilizador, Cache cache, Point GPS, String objetivo, Utilizador utilizador1) {
-        super(id, descricao, utilizador, cache);
+    public TravelBug(String descricao, Utilizador utilizador, Cache cache, Point GPS, String objetivo, ArrayList<Log> historico) {
+        super(descricao, utilizador, cache);
         this.GPS = GPS;
         Objetivo = objetivo;
-        this.utilizador = utilizador1;
+        Historico = historico;
     }
-
 
     //Getter e Setter
 
@@ -43,11 +37,11 @@ public class TravelBug extends Item {
         Objetivo = objetivo;
     }
 
-    public Utilizador getUtilizador() {
-        return utilizador;
+    public ArrayList<Log> getHistorico() {
+        return Historico;
     }
 
-    public void setUtilizador(Utilizador utilizador) {
-        this.utilizador = utilizador;
+    public void setHistorico(ArrayList<Log> historico) {
+        Historico = historico;
     }
 }

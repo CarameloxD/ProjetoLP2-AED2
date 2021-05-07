@@ -4,12 +4,8 @@ import java.util.ArrayList;
 
 public class Admin extends Premium {
 
-    public Admin(int ID, String nome, ArrayList items) {
-        super(ID, nome, items);
-    }
-
-    public Utilizador listarUtilizadores() {
-        return null;
+    public Admin(int ID, String nome) {
+        super(ID, nome);
     }
 
     public void removerCache() {
@@ -19,7 +15,11 @@ public class Admin extends Premium {
         return null;
     }
 
-    public void listarLogs() {
+    public void listarLogsCache(Cache cache) {
+        for(Log log : cache.getLogs())
+            System.out.println(log.date.toString() + log.Time.toString() + log.Mensagem);
+        for(int i = 0; i < cache.getLogs().size(); i++)
+            System.out.println(cache.getLogs().get(i).date.toString() + cache.getLogs().get(i).Time.toString() + cache.getLogs().get(i).Mensagem);
     }
 
 }

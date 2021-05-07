@@ -15,4 +15,5 @@ public class Basic extends Utilizador {
     public void criarCache() {
     }
 
+
 }

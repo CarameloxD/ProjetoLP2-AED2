@@ -15,15 +15,18 @@ public class Cache {
 
     public String Dificuldade;
 
+    public ArrayList<Log> Logs;
+
     //Constructor
-    public Cache(Integer id, Point GPS, ArrayList<Item> items, String pontoInteresse, String dificuldade) {
+
+    public Cache(Integer id, Point GPS,  String pontoInteresse, String dificuldade, ArrayList<Log> logs) {
         Id = id;
         this.GPS = GPS;
         Items = items;
         PontoInteresse = pontoInteresse;
         Dificuldade = dificuldade;
+        Logs = logs;
     }
-
 
     //Getter e Setter
 
@@ -43,12 +46,8 @@ public class Cache {
         this.GPS = GPS;
     }
 
-    public ArrayList getItems() {
+    public ArrayList<Item> getItems() {
         return Items;
-    }
-
-    public void setItems(ArrayList items) {
-        Items = items;
     }
 
     public String getPontoInteresse() {
@@ -67,4 +66,15 @@ public class Cache {
         Dificuldade = dificuldade;
     }
 
+    public void setItems(ArrayList<Item> items) {
+        Items = items;
+    }
+
+    public ArrayList<Log> getLogs() {
+        return Logs;
+    }
+
+    public void setLogs(ArrayList<Log> logs) {
+        Logs = logs;
+    }
 }

@@ -9,7 +9,7 @@ public abstract class Utilizador {
 
     public String Nome;
 
-    public ArrayList<Item> Items;
+    private ArrayList<Item> Items = new ArrayList<>();
 
     public void editarUtilizador(Utilizador u) {
 
@@ -19,29 +19,14 @@ public abstract class Utilizador {
 
     }
 
-    public void trocarItems(Cache c, int id1, int id2) { //ID1 - Item do utilizador    ID2 - Item da cache
-        for(int i = 0; i < c.Items.size(); i++){
-            if(c.Items.get(i).Id == id2){
-                for(int j = 0; j < this.Items.size(); j++){
-                    if(this.Items.get(j).Id == id1){
-                        Item aux = this.Items.get(j);
-                        this.Items.get(j) = c.Items.get(i);
-                        c.Items.get(i) = aux;
-                    }
-                }
-            }
-        }
-    }
-
     public void registarLog(Cache c) {
 
     }
 
     //Constructor
-    public Utilizador(int ID, String nome, ArrayList items) {
+    public Utilizador(int ID, String nome) {
         this.ID = ID;
         Nome = nome;
-        Items = items;
     }
 
     //Getter e Setter
@@ -68,6 +53,4 @@ public abstract class Utilizador {
     public void setItems(ArrayList items) {
         Items = items;
     }
-
-
 }

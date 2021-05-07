@@ -2,8 +2,6 @@ package GeoCaching;
 
 public class Item {
 
-    public Integer Id;
-
     public String Descricao;
 
     public Utilizador utilizador;
@@ -11,21 +9,13 @@ public class Item {
     public Cache cache;
 
     //Constructor
-    public Item(Integer id, String descricao, Utilizador utilizador, Cache cache) {
-        Id = id;
+    public Item( String descricao, Utilizador utilizador, Cache cache) {
         Descricao = descricao;
         this.utilizador = utilizador;
         this.cache = cache;
     }
 
     //Getter e Setter
-    public Integer getId() {
-        return Id;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
-    }
 
     public String getDescricao() {
         return Descricao;

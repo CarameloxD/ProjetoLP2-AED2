@@ -1,23 +1,33 @@
 package GeoCaching;
 
 import java.sql.Time;
+import java.sql.Date;
 
 public class Log {
+    public Date date;
 
     public Time Time;
 
     public String Mensagem;
 
-    public Cache cache;
 
     //Constructor
-    public Log(Time time, String mensagem, Cache cache) {
+
+    public Log(Date date, java.sql.Time time, String mensagem) {
+        this.date = date;
         Time = time;
         Mensagem = mensagem;
-        this.cache = cache;
     }
 
     //Getter e Setter
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public Time getTime() {
         return Time;
     }
@@ -32,13 +42,5 @@ public class Log {
 
     public void setMensagem(String mensagem) {
         Mensagem = mensagem;
-    }
-
-    public Cache getCache() {
-        return cache;
-    }
-
-    public void setCache(Cache cache) {
-        this.cache = cache;
     }
 }
