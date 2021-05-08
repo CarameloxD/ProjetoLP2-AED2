@@ -6,13 +6,10 @@ public abstract class Point {
 
     public Float Longitude;
 
-    public String Regiao;
-
     //Constructor
     public Point(Float latitude, Float longitude, String regiao) {
         Latitude = latitude;
         Longitude = longitude;
-        Regiao = regiao;
     }
 
     //Getter e Setter
@@ -30,13 +27,5 @@ public abstract class Point {
 
     public void setLongitude(Float longitude) {
         Longitude = longitude;
-    }
-
-    public String getRegiao() {
-        return Regiao;
-    }
-
-    public void setRegiao(String regiao) {
-        Regiao = regiao;
     }
 }

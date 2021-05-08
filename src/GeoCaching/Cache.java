@@ -1,40 +1,49 @@
 package GeoCaching;
 
+import edu.princeton.cs.algs4.RedBlackBST;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Time;
+import java.sql.Date;
 import java.util.ArrayList;
 
 
 public class Cache {
 
-    public Integer Id;
+    private String nome;
 
-    public Point GPS;
+    private String regiao;
 
-    public ArrayList<Item> Items = new ArrayList<>();
+    private Point GPS;
 
-    public String PontoInteresse;
+    private ArrayList<Item> Items = new ArrayList<>();
 
-    public String Dificuldade;
+    private String PontoInteresse;
 
-    public ArrayList<Log> Logs;
+    private String Dificuldade;
+
+    private String Tipo;
+
+    private RedBlackBST<Integer, Log> logs = new RedBlackBST<>();
 
     //Constructor
-
-    public Cache(Integer id, Point GPS,  String pontoInteresse, String dificuldade, ArrayList<Log> logs) {
-        Id = id;
+    public Cache(String nome, String regiao, Point GPS, String pontoInteresse, String dificuldade, String tipo) {
+        this.nome = nome;
+        this.regiao = regiao;
         this.GPS = GPS;
         PontoInteresse = pontoInteresse;
         Dificuldade = dificuldade;
-        Logs = logs;
+        Tipo = tipo;
     }
 
     //Getter e Setter
-
-    public Integer getId() {
-        return Id;
+    public String getNome() {
+        return nome;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Point getGPS() {
@@ -69,11 +78,11 @@ public class Cache {
         Items = items;
     }
 
-    public ArrayList<Log> getLogs() {
-        return Logs;
+    public String getTipo() {
+        return Tipo;
     }
 
-    public void setLogs(ArrayList<Log> logs) {
-        Logs = logs;
+    public void setTipo(String tipo) {
+        Tipo = tipo;
     }
 }

@@ -4,22 +4,32 @@ import java.sql.Time;
 import java.sql.Date;
 
 public class Log {
-    public Date date;
+    private int id;
 
-    public Time Time;
+    private Date date;
+
+    private Time Time;
 
     public String Mensagem;
 
 
     //Constructor
-
-    public Log(Date date, java.sql.Time time, String mensagem) {
+    public Log(int id, Date date, Time time, String mensagem) {
+        this.id = id;
         this.date = date;
         Time = time;
         Mensagem = mensagem;
     }
 
     //Getter e Setter
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Date getDate() {
         return date;
     }
