@@ -1,17 +1,19 @@
 package GeoCaching;
 
-public abstract class Point {
+public class Point {
 
     public Float Latitude;
 
     public Float Longitude;
 
     //Constructor
+
+    public Point() {}
+
     public Point(Float latitude, Float longitude, String regiao) {
         Latitude = latitude;
         Longitude = longitude;
     }
-
     //Getter e Setter
     public Float getLatitude() {
         return Latitude;

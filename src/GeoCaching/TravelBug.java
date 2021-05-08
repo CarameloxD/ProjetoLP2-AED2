@@ -77,7 +77,6 @@ public class TravelBug extends Item {
         if (Historico.contains(ID)) {
             Historico.get(ID).setId(id);
             Historico.get(ID).setDate(date);
-            Historico.get(ID).setTime(time);
             Historico.get(ID).setMensagem(mensagem);
         }
     }

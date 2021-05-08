@@ -6,23 +6,25 @@ import edu.princeton.cs.algs4.SeparateChainingHashST;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
-
+    public static int nUtilizadores = 0, nCaches = 0;
     //Path
-    public String inputxt = (".//data//input.txt");
-    public String utilizadortxt = (".//data//utilizador.txt");
-    public String cachestxt = (".//data//caches.txt");
-    public String logxt = (".//data//log.txt");
-    public String travelBugxt = (".//data//travelBug.txt");
+    private static String inputxt = (".//data//input.txt");
+    private static String utilizadortxt = (".//data//utilizador.txt");
+    private static String cachestxt = (".//data//caches.txt");
+
+    private static String utilizadoresRemovidostxt = (".//data//utilizadoresRemovidos.txt");
+    private static String cachesRemovidastxt = (".//data//cachesRemovidas.txt");
 
     public static SeparateChainingHashST<Integer, Basic> basics = new SeparateChainingHashST<>();
     public static SeparateChainingHashST<Integer, Admin> admins = new SeparateChainingHashST<>();
     public static SeparateChainingHashST<Integer, Premium> premiums = new SeparateChainingHashST<>();
     public static SeparateChainingHashST<String, Cache> caches = new SeparateChainingHashST<>();
 
+    public static void main(String[] args) throws IOException {
 
-    public static void main(String[] args) {
         Basic b1 = new Basic(0, "Nuninho", "Basic");
         Basic b2 = new Basic(1, "Ricardinho", "Basic");
         Basic b3 = new Basic(2, "Joaozinho", "Basic");
@@ -37,8 +39,8 @@ public class Main {
         Admin a2 = new Admin(1, "Josefina", "admin");
         addAdminUser(a1);
         addAdminUser(a2);
-        Cache c1 = new Cache("ZedosCaes", "norte", null, null, "dificil", "basic");
-        Cache c2 = new Cache("CasaDoRicardo", "sul", null, null, "facil", "premium");
+        Cache c1 = new Cache("ZedosCaes", "norte", 30.0f, 2.5f, "Serra da Estrela", "dificil", "basic");
+        Cache c2 = new Cache("CasaDoRicardo", "sul", 23.4f, 3.9f, "Jardim", "facil", "premium");
         addCache(c1);
         addCache(c2);
         Item item = new Item("test");
@@ -47,25 +49,17 @@ public class Main {
         p1.addItemsUser(item1);
         TravelBug tb1 = new TravelBug("TravelBug1", "qualquercoisa", null, "Ir_a_casa_do_ricardo");
         TravelBug tb2 = new TravelBug("TravelBug2", "qualquercoisa2", null, "Ir_a_casa_do_Danielzao");
-        a1.addTravelbugsUser(tb1);
-        p2.addTravelbugsUser(tb2);
+        admins.get(a1.getID()).addTravelbugsUser(tb1);
+        premiums.get(p2.getID()).addTravelbugsUser(tb2);
 
-        b1.tostring();
-        b2.tostring();
-        b3.tostring();
-        p1.tostring();
-        p2.tostring();
-        a1.tostring();
-        a2.tostring();
-
-       /* var items = admin.getItems();
-        items.add(item1);
-
-        cache.getItems().add(item);
-        admin.trocarItems(cache, item, item1);
-        admin.trocarItems(cache, item1, item);
-        var item2 = (Item) admin.getItems().get(0);
-        System.out.println(item2.getDescricao());*/
+        basics.get(b1.getID()).tostring();
+        admins.get(a1.getID()).tostring();
+        removerBasicUser(basics.get(b1.getID()));
+       // basics.get(b1.getID()).visitarCache(caches.get(c1.getNome()), "Ola", item, null);
+        basics.get(b2.getID()).visitarCache(caches.get(c1.getNome()), "Ola 2", null, null);
+        removeCache(caches.get(c1.getNome()));
+        removerPremiumUser(premiums.get(p2.getID()));
+        removerAdminUser(admins.get(a1.getID()));
     }
 
 
@@ -81,6 +75,7 @@ public class Main {
             System.out.println("Erro, cache ja existe na DB!");
             return;
         }
+        nCaches++;
         caches.put(c.getNome(), c);
     }
 
@@ -120,6 +115,7 @@ public class Main {
             System.out.println("Erro, Utilizador Basic com ID:" + id + " já existe na DB!");
             return;
         }
+        nUtilizadores++;
         basics.put(id, b);
     }
 
@@ -129,6 +125,7 @@ public class Main {
             System.out.println("Erro, Utilizador Premium com ID:" + id + " já existe na DB!");
             return;
         }
+        nUtilizadores++;
         premiums.put(id, p);
     }
 
@@ -138,6 +135,7 @@ public class Main {
             System.out.println("Erro, Utilizador Admin com ID:" + id + " já existe na DB!");
             return;
         }
+        nUtilizadores++;
         admins.put(id, a);
     }
 
@@ -171,30 +169,69 @@ public class Main {
         admins.get(id).setItems(Items);
     }
 
-    public static void removerBasicUser(Basic b) {
+    public static void removerBasicUser(Basic b) throws IOException {
         int id = b.getID();
         if (!basics.contains(id)) {
             System.out.println("Erro Utilizador nao registado na DB!");
             return;
         }
+        FileWriter wr = new FileWriter(utilizadoresRemovidostxt, true);
+        wr.write(b.getID() + ", " + b.getNome() + ", " + b.getPerm() + "\n");
+        wr.write(String.valueOf(b.getItems().size()) + " items");
+        for (Item i : b.getItems()) {
+            wr.write(", " + i.getDescricao());
+        }
+        wr.write("\n" + String.valueOf(b.getTravelbugs().size()) + " TravelBugs\n");
+        for (String nome : b.getTravelbugs().keys()) {
+            wr.write(b.getTravelbugs().get(nome).getNome() + ", " +
+                    b.getTravelbugs().get(nome).getDescricao() + ", " +
+                    b.getTravelbugs().get(nome).getObjetivo() + "\n");
+        }
+        wr.close();
         basics.delete(id);
     }
 
-    public static void removerPremiumUser(Premium p) {
+    public static void removerPremiumUser(Premium p) throws IOException {
         int id = p.getID();
         if (!premiums.contains(id)) {
             System.out.println("Erro Utilizador nao registado na DB!");
             return;
         }
+        FileWriter wr = new FileWriter(utilizadoresRemovidostxt, true);
+        wr.write(p.getID() + ", " + p.getNome() + ", " + p.getPerm() + "\n");
+        wr.write(String.valueOf(p.getItems().size()) + " items");
+        for (Item i : p.getItems()) {
+            wr.write(", " + i.getDescricao());
+        }
+        wr.write("\n" + String.valueOf(p.getTravelbugs().size()) + " TravelBugs\n");
+        for (String nome : p.getTravelbugs().keys()) {
+            wr.write(p.getTravelbugs().get(nome).getNome() + ", " +
+                    p.getTravelbugs().get(nome).getDescricao() + ", " +
+                    p.getTravelbugs().get(nome).getObjetivo() + "\n");
+        }
+        wr.close();
         premiums.delete(id);
     }
 
-    public static void removerAdminUser(Admin a) {
+    public static void removerAdminUser(Admin a) throws IOException {
         int id = a.getID();
         if (!admins.contains(id)) {
             System.out.println("Erro Utilizador nao registado na DB!");
             return;
         }
+        FileWriter wr = new FileWriter(utilizadoresRemovidostxt, true);
+        wr.write(a.getID() + ", " + a.getNome() + ", " + a.getPerm() + "\n");
+        wr.write(String.valueOf(a.getItems().size()) + " items");
+        for (Item i : a.getItems()) {
+            wr.write(", " + i.getDescricao());
+        }
+        wr.write("\n" + String.valueOf(a.getTravelbugs().size()) + " TravelBugs\n");
+        for (String nome : a.getTravelbugs().keys()) {
+            wr.write(a.getTravelbugs().get(nome).getNome() + ", " +
+                    a.getTravelbugs().get(nome).getDescricao() + ", " +
+                    a.getTravelbugs().get(nome).getObjetivo() + "\n");
+        }
+        wr.close();
         admins.delete(id);
     }
 
@@ -220,49 +257,4 @@ public class Main {
     }
 
     /*---------------------------------------------------------------------------------------------------------------*/
-
-    /*public Object editar_utilizador(Object ob ,int id, UsersBase base, String tipo, String nome) {
-        for (Integer i : base.getBasics().keys()){
-            if (base.getBasics().get(i).ID == id){
-                if (tipo.equals("premium")){
-                    base.getBasics().delete(i);
-                    Premium p = new Premium(id, nome, base);
-                    return p;
-                }
-                base.getBasics().delete(i);
-                Admin a = new Admin(id, nome,base);
-                return a;
-            }
-        }
-
-        for (Integer k : base.getPremiums().keys()){
-            if (base.getPremiums().get(k).ID == id){
-                if (tipo.equals("basic")){
-                    base.getPremiums().delete(k);
-                    Basic b = new Basic(id, nome, base);
-                    return b;
-                }
-                base.getPremiums().delete(k);
-                Admin a = new Admin(id, nome,base);
-                return a;
-            }
-        }
-        System.out.println("Impossivel editar user");
-        return ob;
-    }*/
-
-    /*public void guardarCursoHistorico (Curso c) throws IOException {
-        FileWriter myWriter = new FileWriter(".//data//cursosHistorico.txt",true);
-
-        myWriter.write("Curso:\n");
-        myWriter.write(c.getNome() + ";" + c.getFaculdade().getName() + "\n");
-        myWriter.write("TURMAS:\n");
-        for (String codigo : c.getTurmas().keys()) {
-            Turma t = c.getTurmas().get(codigo);
-            myWriter.write(t.getAno() + ";" + t.getCodigo() + ";" + t.getCurso().getNome() + ";" +
-                    t.getDisciplina().getNome() + ";" + t.getSala().getCodigo() + ";" + "\n");
-        }
-        myWriter.write("\n");
-        myWriter.close();
-    }*/
 }

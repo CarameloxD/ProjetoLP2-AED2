@@ -2,9 +2,6 @@ package GeoCaching;
 
 import edu.princeton.cs.algs4.RedBlackBST;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.Time;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -15,7 +12,7 @@ public class Cache {
 
     private String regiao;
 
-    private Point GPS;
+    private Point GPS = new Point();
 
     private ArrayList<Item> Items = new ArrayList<>();
 
@@ -28,10 +25,11 @@ public class Cache {
     private RedBlackBST<Integer, Log> logs = new RedBlackBST<>();
 
     //Constructor
-    public Cache(String nome, String regiao, Point GPS, String pontoInteresse, String dificuldade, String tipo) {
+    public Cache(String nome, String regiao, float latitude, float longitude, String pontoInteresse, String dificuldade, String tipo) {
         this.nome = nome;
         this.regiao = regiao;
-        this.GPS = GPS;
+        this.GPS.setLatitude(latitude);
+        this.GPS.setLongitude(longitude);
         PontoInteresse = pontoInteresse;
         Dificuldade = dificuldade;
         Tipo = tipo;
@@ -72,10 +70,6 @@ public class Cache {
 
     public void setDificuldade(String dificuldade) {
         Dificuldade = dificuldade;
-    }
-
-    public void setItems(ArrayList<Item> items) {
-        Items = items;
     }
 
     public String getTipo() {

@@ -4,21 +4,22 @@ import java.sql.Time;
 import java.sql.Date;
 
 public class Log {
+    static AtomicInteger nextId = new AtomicInteger();
     private int id;
 
     private Date date;
-
-    private Time Time;
 
     public String Mensagem;
 
 
     //Constructor
-    public Log(int id, Date date, Time time, String mensagem) {
-        this.id = id;
+
+    public Log( Date date, String mensagem, int userId, String perm) {
+        id = nextId.incrementAndGet();
         this.date = date;
-        Time = time;
         Mensagem = mensagem;
+        this.userId = userId;
+        this.perm = perm;
     }
 
     //Getter e Setter
@@ -38,19 +39,35 @@ public class Log {
         this.date = date;
     }
 
-    public Time getTime() {
-        return Time;
-    }
-
-    public void setTime(Time time) {
-        Time = time;
-    }
-
     public String getMensagem() {
         return Mensagem;
     }
 
     public void setMensagem(String mensagem) {
         Mensagem = mensagem;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getPerm() {
+        return perm;
+    }
+
+    public void setPerm(String perm) {
+        this.perm = perm;
+    }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "\tRegistado em: " + date.getYear() + "/" + date.getMonth() + "/" + date.getDay() + " - " +
+                date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + ", " + this.perm + "UserID:" +
+                this.userId + " -> Mensagem: '" + Mensagem + "' }";
     }
 }

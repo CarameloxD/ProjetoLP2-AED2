@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public abstract class Utilizador {
 
+    /**
+     * -- ATRIBUTOS --
+     */
+
     private int ID;
 
     private String Nome;
@@ -17,22 +21,27 @@ public abstract class Utilizador {
 
     private RedBlackBST<String, TravelBug> travelbugs = new RedBlackBST<>();
 
+    private ArrayList<Cache> cachesVisitadas = new ArrayList<>();
 
-    //Constructor
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- CONSTRUCTOR --
+     */
+
     public Utilizador(int ID, String nome, String perm) {
         this.ID = ID;
         Nome = nome;
         this.perm = perm;
     }
 
-    public void trocarItems(Cache c, Item i1, Item i2) {
-        if (c.getItems().contains(i1)) {
-            c.getItems().set(c.getItems().indexOf(i1), i2);
-            this.Items.set(this.Items.indexOf(i2), i1);
-        }
-    }
 
-    //Getter e Setter
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- GETTERs & SETTERs --
+     */
+
     public int getID() {
         return ID;
     }
@@ -53,6 +62,18 @@ public abstract class Utilizador {
         return Items;
     }
 
+    public void setItems(ArrayList<Item> items) {
+        Items = items;
+    }
+
+    public ArrayList<Cache> getCachesVisitadas() {
+        return cachesVisitadas;
+    }
+
+    public void setCachesVisitadas(ArrayList<Cache> cachesVisitadas) {
+        this.cachesVisitadas = cachesVisitadas;
+    }
+
     public String getPerm() {
         return perm;
     }
@@ -61,13 +82,36 @@ public abstract class Utilizador {
         this.perm = perm;
     }
 
-    public void setItems(ArrayList<Item> items) {
-        Items = items;
-    }
-
     public RedBlackBST<String, TravelBug> getTravelbugs() {
         return travelbugs;
     }
+
+    public void tostring() {
+        System.out.println("Utilizador {\n" + "\tID=" + ID + ", Nome: " + Nome + ";\n\tItems do Utilizador:");
+        for (Item i : this.getItems()) {
+            System.out.println("\t\t" + i.getDescricao() + ";");
+        }
+        if (this.getItems().isEmpty()) {
+            System.out.println("\t\tUtilizador nao tem Items na sua posse!");
+        }
+        System.out.println("\tTravelBugs do Utilizador:");
+        for (String nome : this.getTravelbugs().keys()) {
+            System.out.println("\t\t" + this.getTravelbugs().get(nome).getNome() +
+                    ": " + this.getTravelbugs().get(nome).getDescricao() +
+                    ", " + this.getTravelbugs().get(nome).getObjetivo() +
+                    ";");
+        }
+        if (this.getTravelbugs().isEmpty()) {
+            System.out.println("\t\tUtilizador nao tem TravelBugs na sua posse!");
+        }
+        System.out.println("\tPermissons: " + perm + "\n}\n\n");
+    }
+
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- MANIPULAÇAO REDBLACK TRAVELBUGS --
+     */
 
     public void addItemsUser(Item i) {
         this.Items.add(i);
@@ -82,26 +126,41 @@ public abstract class Utilizador {
         travelbugs.put(name, tb);
     }
 
-    public void tostring() {
-        System.out.println("Utilizador {\n" + "\tID=" + ID + ", Nome: " + Nome + ";\n\tItems do Utilizador:");
-        for (Item i : this.getItems()) {
-            System.out.println("\t\t" + i.getDescricao() + ";");
+    public void trocarItems(Cache c, Item itemLevar, Item itemDeixar) {
+        if (itemLevar != null && itemDeixar != null) {                                                     //Troca de Items com Cache
+            if (c.getItems().contains(itemLevar) && this.Items.contains(itemDeixar)) {
+                c.getItems().set(c.getItems().indexOf(itemLevar), itemDeixar);
+                this.Items.set(this.Items.indexOf(itemDeixar), itemLevar);
+            } else System.out.println("ERRO! Cache/User não contem o item pedido!");
         }
-        if (this.getItems().isEmpty()) {
-            System.out.println("\t\tUtilizador nao tem Items na sua posse!");
+        if (itemLevar != null && itemDeixar == null) {                                                     //Levar um Item da Cache
+            if (c.getItems().contains(itemLevar)) {
+                c.getItems().remove(itemLevar);
+                this.getItems().add(itemLevar);
+            } else System.out.println("ERRO! Cache não contem o item pedido!");
         }
-        System.out.println("\tTravelBugs do Utilizador:");
-        for (String nome : this.getTravelbugs().keys()) {
-            if (nome != null) {
-                System.out.println("\t\t" + this.getTravelbugs().get(nome).getNome() +
-                        ": " + this.getTravelbugs().get(nome).getDescricao() +
-                        ", " + this.getTravelbugs().get(nome).getObjetivo() +
-                        ";");
-            }
+        if (itemLevar == null && itemDeixar != null) {                                                     //Colocar Item na Cache
+            if (this.Items.contains(itemDeixar)) {
+                c.getItems().add(itemDeixar);
+                this.getItems().remove(itemDeixar);
+            } else System.out.println("ERRO! User não contem o item pedido!");
         }
-        if (this.getTravelbugs().isEmpty()) {
-            System.out.println("\t\tUtilizador nao tem TravelBugs na sua posse!");
-        }
-        System.out.println("\tPermissons: " + perm + "\n}\n\n");
+    }
+
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- METODOS ESPECIFICOS --
+     */
+
+    public void visitarCache(Cache c, String Mensagem, Item itemDeixar, Item itemLevar) {
+        trocarItems(c, itemLevar, itemDeixar);
+        this.cachesVisitadas.add(c);
+
+        LocalDateTime date = LocalDateTime.now();
+        Date dateAtual = new Date(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), date.getHour(), date.getMinute(), date.getSecond());
+
+        Log log = new Log(dateAtual, Mensagem, this.getID(), this.getPerm());
+        c.getLogs().put(log.getId(), log);
     }
 }
