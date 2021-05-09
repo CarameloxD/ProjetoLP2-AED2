@@ -2,9 +2,9 @@ package GeoCaching;
 
 public class Point {
 
-    public Float Latitude;
+    private Float Latitude;
 
-    public Float Longitude;
+    private Float Longitude;
 
     //Constructor
 

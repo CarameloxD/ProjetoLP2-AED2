@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class Cache {
 
+    /**
+     * -- ATRIBUTOS --
+     */
+
     private String nome;
 
     private String regiao;
@@ -22,10 +26,18 @@ public class Cache {
 
     private String Tipo;
 
+    private static ArrayList<String> regions = new ArrayList<>();
+
     private RedBlackBST<Integer, Log> logs = new RedBlackBST<>();
 
-    //Constructor
-    public Cache(String nome, String regiao, float latitude, float longitude, String pontoInteresse, String dificuldade, String tipo) {
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- CONSTRUCTORs --
+     */
+
+    public Cache(String nome, String regiao, float latitude, float longitude, String pontoInteresse,
+                 String dificuldade, String tipo) {
         this.nome = nome;
         this.regiao = regiao;
         this.GPS.setLatitude(latitude);
@@ -33,11 +45,26 @@ public class Cache {
         PontoInteresse = pontoInteresse;
         Dificuldade = dificuldade;
         Tipo = tipo;
+        if (!regions.contains(regiao)) {
+            regions.add(regiao);
+        }
     }
 
-    //Getter e Setter
+    public Cache() {
+    }
+
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- GETTERs & SETTERs --
+     */
+
     public String getNome() {
         return nome;
+    }
+
+    public ArrayList<String> getRegions() {
+        return regions;
     }
 
     public void setNome(String nome) {

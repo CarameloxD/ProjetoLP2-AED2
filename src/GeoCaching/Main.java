@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
-    public static int nUtilizadores = 0, nCaches = 0;
     //Path
     private static String inputxt = (".//data//input.txt");
+    private static String dumptxt = (".//data//dump.txt");
     private static String utilizadortxt = (".//data//utilizador.txt");
     private static String cachestxt = (".//data//caches.txt");
 
@@ -25,7 +25,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Basic b1 = new Basic(0, "Nuninho", "Basic");
+        /*Basic b1 = new Basic(0, "Nuninho", "Basic");
         Basic b2 = new Basic(1, "Ricardinho", "Basic");
         Basic b3 = new Basic(2, "Joaozinho", "Basic");
         addBasicUser(b1);
@@ -52,14 +52,23 @@ public class Main {
         admins.get(a1.getID()).addTravelbugsUser(tb1);
         premiums.get(p2.getID()).addTravelbugsUser(tb2);
 
-        basics.get(b1.getID()).tostring();
-        admins.get(a1.getID()).tostring();
-        removerBasicUser(basics.get(b1.getID()));
-       // basics.get(b1.getID()).visitarCache(caches.get(c1.getNome()), "Ola", item, null);
-        basics.get(b2.getID()).visitarCache(caches.get(c1.getNome()), "Ola 2", null, null);
-        removeCache(caches.get(c1.getNome()));
-        removerPremiumUser(premiums.get(p2.getID()));
-        removerAdminUser(admins.get(a1.getID()));
+        //basics.get(b1.getID()).tostring();
+        //admins.get(a1.getID()).tostring();
+        //removerBasicUser(basics.get(b1.getID()));
+        // basics.get(b1.getID()).visitarCache(caches.get(c1.getNome()), "Ola", item, null);
+        basics.get(b2.getID()).visitarCache(caches.get(c1.getNome()), "Ola 2", item, null);
+        //removeCache(caches.get(c1.getNome()));
+        //removerPremiumUser(premiums.get(p2.getID()));
+        //removerAdminUser(admins.get(a1.getID()));*/
+
+        leituraFicheiroTxt(inputxt);
+        /*listarBasicUsers();
+        listarPremiumUsers();
+        listarAdminUsers();
+        listarCache();*/
+        listarCachesPremiumComItems();
+
+        //escritaFicheiroTxt();
     }
 
 
@@ -75,7 +84,6 @@ public class Main {
             System.out.println("Erro, cache ja existe na DB!");
             return;
         }
-        nCaches++;
         caches.put(c.getNome(), c);
     }
 
@@ -99,7 +107,7 @@ public class Main {
     public static void listarCache() {
         System.out.println("Caches: \n");
         for (String cache : caches.keys()) {
-            System.out.println(caches.get(cache).toString());
+            caches.get(cache).tostring();
         }
     }
 
@@ -115,7 +123,6 @@ public class Main {
             System.out.println("Erro, Utilizador Basic com ID:" + id + " já existe na DB!");
             return;
         }
-        nUtilizadores++;
         basics.put(id, b);
     }
 
@@ -125,7 +132,6 @@ public class Main {
             System.out.println("Erro, Utilizador Premium com ID:" + id + " já existe na DB!");
             return;
         }
-        nUtilizadores++;
         premiums.put(id, p);
     }
 
@@ -135,7 +141,6 @@ public class Main {
             System.out.println("Erro, Utilizador Admin com ID:" + id + " já existe na DB!");
             return;
         }
-        nUtilizadores++;
         admins.put(id, a);
     }
 
@@ -257,4 +262,116 @@ public class Main {
     }
 
     /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * LEITURA E ESCRITA DE FICHEIROS INFORMAÇÃO -- INPUT --
+     */
+
+    public static void leituraFicheiroTxt(String path) {
+        In in = new In(path);
+
+        while (!in.isEmpty()) {
+            int l = Integer.parseInt(in.readLine());
+            for (int i = 0; i < l; i++) {
+                String line = in.readLine();
+                String[] fields = line.split(", ");
+                switch (fields[2]) {
+                    case "basic" -> {
+                        Basic b = new Basic(Integer.parseInt(fields[0]), fields[1], fields[2]);
+                        addBasicUser(b);
+                    }
+                    case "premium" -> {
+                        Premium p = new Premium(Integer.parseInt(fields[0]), fields[1], fields[2]);
+                        addPremiumUser(p);
+                    }
+                    case "admin" -> {
+                        Admin a = new Admin(Integer.parseInt(fields[0]), fields[1], fields[2]);
+                        addAdminUser(a);
+                    }
+                }
+            }
+            int m = Integer.parseInt(in.readLine());
+            for (int i = 0; i < m; i++) {
+                String line = in.readLine();
+                String[] aux = line.split(", ");
+                for (int j = 0; j < Integer.parseInt(aux[1]); j++) {
+                    String line2 = in.readLine();
+                    String[] field = line2.split(", ");
+                    Cache c = new Cache(field[0], aux[0], Float.parseFloat(field[2]), Float.parseFloat(field[3]), null, null, field[1]);
+                    addCache(c);
+                    for (int k = 0; k < Integer.parseInt(field[4]); k++) {
+                        Item item = new Item(field[5 + k]);
+                        c.getItems().add(item);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void escritaFicheiroTxt() throws IOException {
+        FileWriter wr = new FileWriter(dumptxt, true);
+        int nUtilizadores = basics.size() + premiums.size() + admins.size();
+        wr.write(String.valueOf(nUtilizadores) + "\n");
+        for (Integer i : basics.keys()) {
+            wr.write(basics.get(i).getID() + ", " + basics.get(i).getNome() + ", " + basics.get(i).getPerm() + "\n");
+        }
+        for (Integer i : premiums.keys()) {
+            wr.write(premiums.get(i).getID() + ", " + premiums.get(i).getNome() + ", " + premiums.get(i).getPerm() + "\n");
+        }
+        for (Integer i : admins.keys()) {
+            wr.write(admins.get(i).getID() + ", " + admins.get(i).getNome() + ", " + admins.get(i).getPerm() + "\n");
+        }
+        Cache c = new Cache();
+        wr.write(String.valueOf(c.getRegions().size()) + "\n");
+
+        for (String s : c.getRegions()) {
+            regionCache rc = getCachesInRegion(s);
+            wr.write(String.valueOf(rc.nCaches) + ", " + s + "\n");
+            for (Cache cache : rc.cachesInRegion) {
+                wr.write(cache.getNome() + ", " + cache.getTipo() + ", " + cache.getGPS().getLatitude() + ", " +
+                        cache.getGPS().getLongitude() + ", " + String.valueOf(cache.getItems().size()));
+                for (Item i : cache.getItems()) {
+                    wr.write(", " + i.getDescricao());
+                }
+            }
+            wr.write("\n");
+        }
+        wr.close();
+    }
+
+    public static class regionCache {
+        public regionCache() {
+        }
+
+        ArrayList<Cache> cachesInRegion = new ArrayList<>();
+        int nCaches;
+    }
+
+    public static regionCache getCachesInRegion(String Region) {
+        regionCache rc = new regionCache();
+        for (String s : caches.keys()) {
+            if (caches.get(s).getRegiao().equals(Region)) {
+                rc.cachesInRegion.add(caches.get(s));
+                rc.nCaches++;
+            }
+        }
+        return rc;
+    }
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * --- PESQUISAS ---
+     */
+
+    public static void listarCachesPremiumComItems() {
+        int i = 0;
+        for (String s : caches.keys()) {
+            i++;
+            if (caches.get(s).getTipo().equals("premium") && !caches.get(s).getItems().isEmpty()) {
+                caches.get(s).tostring();
+            }
+        }
+        if (i == 0)
+            System.out.println("Nao existem Caches Premium com 1 ou mais items na DB!");
+    }
 }
