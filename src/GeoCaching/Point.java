@@ -10,11 +10,17 @@ public class Point {
 
     public Point() {}
 
-    public Point(Float latitude, Float longitude, String regiao) {
+    public Point(Float latitude, Float longitude) {
         Latitude = latitude;
         Longitude = longitude;
     }
-    //Getter e Setter
+
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- GETTERs & SETTERs --
+     */
+
     public Float getLatitude() {
         return Latitude;
     }

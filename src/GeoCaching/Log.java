@@ -9,14 +9,17 @@ public class Log {
 
     private Date date;
 
+    private String Info;
+
     public String Mensagem;
 
 
     //Constructor
 
-    public Log( Date date, String mensagem, int userId, String perm) {
+    public Log(Date date, String info, String mensagem) {
         id = nextId.incrementAndGet();
         this.date = date;
+        this.Info = info;
         Mensagem = mensagem;
         this.userId = userId;
         this.perm = perm;
@@ -48,26 +51,26 @@ public class Log {
     }
 
     public int getUserId() {
-        return userId;
+        return UserID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public String getInfo() {
+        return Info;
     }
 
-    public String getPerm() {
-        return perm;
+    public void setInfo(String info) {
+        Info = info;
     }
 
-    public void setPerm(String perm) {
-        this.perm = perm;
+    public void setUserId(int userID) {
+        UserID = userID;
     }
 
     @Override
     public String toString() {
         return "Log{" +
                 "\tRegistado em: " + date.getYear() + "/" + date.getMonth() + "/" + date.getDay() + " - " +
-                date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + ", " + this.perm + "UserID:" +
-                this.userId + " -> Mensagem: '" + Mensagem + "' }";
+                date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + ", " + this.Info +
+                " -> Mensagem: '" + Mensagem + "' }";
     }
 }

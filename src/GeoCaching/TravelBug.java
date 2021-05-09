@@ -9,21 +9,53 @@ public class TravelBug extends Item {
 
     private String nome;
 
+    private String nomeCriador;
+
     private Point GPS;
+
+    private String cacheInicial;
 
     private String Objetivo;
 
     private RedBlackBST<Integer, Log> Historico = new RedBlackBST<>();
 
-    //Constructor
-    public TravelBug(String nome, String descricao, Point GPS, String objetivo) {
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- CONSTRUCTOR --
+     */
+
+    public TravelBug(String nome, String nomeCriador, String descricao, float latitude, float longitude,
+                     String CacheInicial, String objetivo) {
         super(descricao);
         this.nome = nome;
-        this.GPS = GPS;
+        this.nomeCriador = nomeCriador;
+        this.GPS = new Point(latitude, longitude);
+        this.cacheInicial = CacheInicial;
         Objetivo = objetivo;
     }
 
-    //Getter e Setter
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- GETTERs & SETTERs --
+     */
+
+    public String getCacheInicial() {
+        return cacheInicial;
+    }
+
+    public void setCacheInicial(String cacheInicial) {
+        this.cacheInicial = cacheInicial;
+    }
+
+    public String getNomeCriador() {
+        return nomeCriador;
+    }
+
+    public void setNomeCriador(String nomeCriador) {
+        this.nomeCriador = nomeCriador;
+    }
 
     public Point getGPS() {
         return GPS;
@@ -55,36 +87,5 @@ public class TravelBug extends Item {
 
     public void setHistorico(RedBlackBST<Integer, Log> historico) {
         Historico = historico;
-    }
-
-    public void addHistorico(Log log) {
-        Integer id = log.getId();
-        if (Historico.contains(id)) {
-            System.out.println("Erro a adicionar, nao existe historico");
-            return;
-        }
-        Historico.put(id, log);
-    }
-
-    public void removeHistorico(Log log) {
-        if (Historico.contains(log.getId())) {
-            Historico.delete(log.getId());
-        } else System.out.println("Erro a remover, nao existe historico");
-    }
-
-    public void editarHistorico(Log log, int id, Date date, Time time, String mensagem) {
-        Integer ID = log.getId();
-        if (Historico.contains(ID)) {
-            Historico.get(ID).setId(id);
-            Historico.get(ID).setDate(date);
-            Historico.get(ID).setMensagem(mensagem);
-        }
-    }
-
-    public void listarHistorico() {
-        System.out.println("Historico: \n");
-        for (Integer log : Historico.keys()) {
-            System.out.println(Historico.get(log).toString());
-        }
     }
 }

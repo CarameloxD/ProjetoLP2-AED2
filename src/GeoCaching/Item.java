@@ -2,9 +2,18 @@ package GeoCaching;
 
 public class Item {
 
+    /**
+     * -- ATRIBUTOS --
+     */
+
     private String Descricao;
 
-    //Constructor
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- CONSTRUCTOR --
+     */
+
     public Item( String descricao) {
         Descricao = descricao;
     }

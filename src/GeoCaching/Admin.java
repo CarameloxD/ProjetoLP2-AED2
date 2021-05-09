@@ -1,6 +1,10 @@
 package GeoCaching;
 
-public class Admin extends Premium{
+public class Admin extends Utilizador{
+
+    /**
+     * -- CONSTRUCTOR --
+     */
 
     public Admin(int ID, String nome, String perm) {
         super(ID, nome, perm);
