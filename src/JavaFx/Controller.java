@@ -2,6 +2,7 @@ package JavaFx;
 
 import GeoCaching.*;
 
+import java.lang.reflect.Array;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import edu.princeton.cs.algs4.Edge;
 import edu.princeton.cs.algs4.In;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -67,8 +69,6 @@ public class Controller {
     public TextField VTregiaoTextField;
     public TextField VTxTextField;
     public TextField VTyTextField;
-    public TextField VTpInteresseTextField;
-    public TextField VTdificuldadeTextField;
     public TextField VTtipoTextField;
     public Button VTadd1Button;
 
@@ -78,10 +78,13 @@ public class Controller {
     public TextField VTtempoAdd;
     public Button VTadd2Button;
 
-    public ListView<Cache> VT1ListViewCache;
+    public ComboBox<String> VTremoveComboBox;
     public Button VTremoveButton;
 
-    public ListView<Cache> VT2ListViewCache;
+    public ComboBox<EdgeDoubleWeighted> VTremove2ComboBox;
+    public Button VTremove2Button;
+
+    public ComboBox<String> VTedit1ComboBox;
     public Button VTeditButton;
 
     public TextField VTedit1TF;
@@ -89,11 +92,9 @@ public class Controller {
     public TextField VTedit3TF;
     public TextField VTedit4TF;
     public TextField VTedit5TF;
-    public TextField VTedit6TF;
-    public TextField VTedit7TF;
     public Button VT1confirmButton;
 
-    public ListView<Object> VTligacaoListView;
+    public ComboBox<EdgeDoubleWeighted> VTedit2ComboBox;
     public Button VTligacaoEditButton;
 
     public TextField VT1edgeEditTF;
@@ -180,7 +181,10 @@ public class Controller {
         Geocaching = geocaching;
     }
 
+    @FXML
     public void initialize() {
+        this.Geocaching = new Geocaching<>();
+
         //Tornar as Tables editáveis
         usersTable.setEditable(true);
         geocachesTable.setEditable(true);
@@ -270,6 +274,8 @@ public class Controller {
         showPartidaComboBox();
         showRegiaoComboBox();
         showTipoComboBox();
+        showEdgesComboBox();
+        showNodesComboBox();
     }
 
     /*-----------------------------------------LEITURA TXT P/TABELAS-------------------------------------------------*/
@@ -500,6 +506,22 @@ public class Controller {
     public void showDestinoComboBox() {
         for (String s : caches.keys()) {
             destinoCombo.getItems().addAll(caches.get(s).getNome());
+        }
+    }
+
+    public void showNodesComboBox() {
+        for (Node n : Geocaching.getAllNodes()) {
+            VTremoveComboBox.getItems().add(n.getC().getNome());
+            VTedit1ComboBox.getItems().add(n.getC().getNome());
+        }
+    }
+
+    public void showEdgesComboBox() {
+        for (Node n : Geocaching.getAllNodes()) {
+            for (EdgeDoubleWeighted e : Geocaching.getAllEdgesFromNode(n)) {
+                VTremove2ComboBox.getItems().add(e);
+                VTedit2ComboBox.getItems().add(e);
+            }
         }
     }
 
@@ -868,7 +890,7 @@ public class Controller {
                     Items.add(item);
                 }
             }
-            if (!caches.contains(nomeGeocachesTextField.getText())){
+            if (!caches.contains(nomeGeocachesTextField.getText())) {
                 Cache c = new Cache(nomeGeocachesTextField.getText(), regiaoGeocachesTextField.getText(),
                         Float.parseFloat(xGeocachesTextField.getText()),
                         Float.parseFloat(yGeocachesTextField.getText()),
@@ -876,8 +898,7 @@ public class Controller {
                 caches.put(c.getNome(), c);
                 c.setItems(Items);
                 geocachesTable.getItems().add(c);
-            }
-            else Alert("Cache", null, "Cache introduzida já consta na DB!");
+            } else Alert("Cache", null, "Cache introduzida já consta na DB!");
             nomeGeocachesTextField.clear();
             tipoGeocachesTextField.clear();
             xGeocachesTextField.clear();
@@ -890,20 +911,19 @@ public class Controller {
     public void handleAdicionarLog(ActionEvent actionEvent) {
         if (dataLogsTextField.getText().isEmpty() || cacheLogsTextField.getText().isEmpty()
                 || infoLogsTextField.getText().isEmpty() || mensagemLogsTextField.getText().isEmpty()
-        || !caches.contains(cacheLogsTextField.getText())) {
+                || !caches.contains(cacheLogsTextField.getText())) {
             Alert("Log", null, "Por favor preencha o/s campo/s que se encontra/m vazio!");
         } else {
             String[] s = dataLogsTextField.getText().split(", ");
-            if (s.length == 6){
+            if (s.length == 6) {
                 Date d = new Date(Integer.parseInt(s[0]), Integer.parseInt(s[1]),
                         Integer.parseInt(s[2]), Integer.parseInt(s[3]),
-                                Integer.parseInt(s[4]), Integer.parseInt(s[5]));
+                        Integer.parseInt(s[4]), Integer.parseInt(s[5]));
                 Log log = new Log(d, infoLogsTextField.getText(), mensagemLogsTextField.getText());
                 caches.get(cacheLogsTextField.getText()).addLogs(log);
 
                 logsTable.getItems().add(log);
-            }
-            else Alert("Log", "(Ano, mes, dia, hora, minutos, segundos)",
+            } else Alert("Log", "(Ano, mes, dia, hora, minutos, segundos)",
                     "Data de registo inválida!");
             dataLogsTextField.clear();
             cacheLogsTextField.clear();
@@ -919,7 +939,7 @@ public class Controller {
             Alert("Historico", null, "Por favor preencha o/s campo/s que se encontra/m vazio!");
         } else {
             String[] s = dataHistoricoTBTextField.getText().split(", ");
-            if (s.length == 6){
+            if (s.length == 6) {
                 Date d = new Date(Integer.parseInt(s[0]), Integer.parseInt(s[1]),
                         Integer.parseInt(s[2]), Integer.parseInt(s[3]),
                         Integer.parseInt(s[4]), Integer.parseInt(s[5]));
@@ -928,8 +948,7 @@ public class Controller {
                         historico);
 
                 historicoTable.getItems().add(historico);
-            }
-            else Alert("Historico", "(Ano, mes, dia, hora, minutos, segundos)",
+            } else Alert("Historico", "(Ano, mes, dia, hora, minutos, segundos)",
                     "Data de registo inválida!");
             dataHistoricoTBTextField.clear();
             travelbugHistoricoTBTextField.clear();
@@ -943,15 +962,14 @@ public class Controller {
                 || cacheTravelBugsTextField.getText().isEmpty() || objetivoTravelBugsTextField.getText().isEmpty()) {
             Alert("TravelBug", null, "Por favor preencha o/s campo/s que se encontra/m vazio!");
         } else {
-            if (!travelbugs.contains(nomeTravelBugsTextField.getText())){
+            if (!travelbugs.contains(nomeTravelBugsTextField.getText())) {
                 TravelBug tb = new TravelBug(nomeTravelBugsTextField.getText(), userTravelBugsTextField.getText(),
                         null, 0.0f, 0.0f, cacheTravelBugsTextField.getText(),
                         objetivoTravelBugsTextField.getText());
                 travelbugs.put(tb.getNome(), tb);
 
                 travelbugsTable.getItems().add(tb);
-            }
-            else Alert("TravelBug", null, "TravelBug introduzido já consta na DB!");
+            } else Alert("TravelBug", null, "TravelBug introduzido já consta na DB!");
             nomeTravelBugsTextField.clear();
             userTravelBugsTextField.clear();
             cacheTravelBugsTextField.clear();
@@ -1075,9 +1093,12 @@ public class Controller {
 
         if (Zona != null) {
             for (Node n : geocache.getAllNodes()) {
-                if ((n.getC().getRegiao()).equals(Zona)) {
-                    geocache.getNodes().getSt().delete(n);
-                    geocache.setG(geocache.getNodes().graph());
+                if (!(n.getC().getRegiao()).equals(Zona)) {
+                    nodeAL.add(n);
+
+                    /*for (EdgeDoubleWeighted i : geocache.getG().getAdj(geocache.getNodes().indexOf(n))) {
+                        edgeAL.add(i);
+                    }*/
                 }
             }
         }

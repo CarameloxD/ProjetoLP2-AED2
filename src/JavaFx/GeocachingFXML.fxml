@@ -110,16 +110,6 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField fx:id="VTpInteresseTextField" prefHeight="25.0" prefWidth="99.0" promptText="Ponto Interesse">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <TextField fx:id="VTdificuldadeTextField" prefHeight="25.0" prefWidth="99.0" promptText="Dificuldade">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </TextField>
                               <TextField fx:id="VTtipoTextField" prefHeight="25.0" prefWidth="99.0" promptText="Tipo">
                                  <HBox.margin>
                                     <Insets right="10.0" />
@@ -134,17 +124,24 @@
                         </HBox>
                         <HBox layoutX="13.0" layoutY="275.0" prefHeight="25.0" prefWidth="839.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="56.0" text="Geocache">
+                              <ComboBox fx:id="VTremoveComboBox" prefWidth="150.0" promptText="Geocache">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
-                              </Label>
-                              <ListView fx:id="VT1ListViewCache" prefHeight="37.0" prefWidth="200.0">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </ListView>
+                              </ComboBox>
                               <Button fx:id="VTremoveButton" mnemonicParsing="false" text="Remover" />
+                              <ComboBox fx:id="VTremove2ComboBox" layoutX="10.0" layoutY="10.0" prefWidth="150.0" promptText="Ligação">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="150.0" right="10.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                              <Button fx:id="VTremove2Button" layoutX="170.0" layoutY="10.0" mnemonicParsing="false" text="Remover" />
                            </children>
                         </HBox>
                         <Label layoutX="147.0" layoutY="31.0" prefHeight="17.0" prefWidth="131.0" scaleX="3.0" scaleY="3.0" text="Adicionar Vertice / Edge" />
@@ -156,16 +153,11 @@
                            <children>
                               <HBox prefHeight="25.0" prefWidth="839.0">
                                  <children>
-                                    <Label prefHeight="25.0" prefWidth="56.0" text="Geocache">
+                                    <ComboBox fx:id="VTedit1ComboBox" prefWidth="150.0" promptText="Geocache">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
-                                    </Label>
-                                    <ListView fx:id="VT2ListViewCache" prefHeight="37.0" prefWidth="200.0">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </ListView>
+                                    </ComboBox>
                                     <Button fx:id="VTeditButton" mnemonicParsing="false" text="Editar" />
                                  </children>
                                  <VBox.margin>
@@ -194,17 +186,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <TextField fx:id="VTedit5TF" prefHeight="25.0" prefWidth="99.0" promptText="Ponto Interesse">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <TextField fx:id="VTedit6TF" prefHeight="25.0" prefWidth="99.0" promptText="Dificuldade">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <TextField fx:id="VTedit7TF" prefHeight="25.0" prefWidth="99.0" promptText="Tipo">
+                                    <TextField fx:id="VTedit5TF" prefHeight="25.0" prefWidth="99.0" promptText="Tipo">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
@@ -222,16 +204,11 @@
                            <children>
                               <HBox prefHeight="25.0" prefWidth="839.0">
                                  <children>
-                                    <Label prefHeight="25.0" prefWidth="56.0" text="Ligação">
+                                    <ComboBox fx:id="VTedit2ComboBox" prefWidth="150.0" promptText="Ligação">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
-                                    </Label>
-                                    <ListView fx:id="VTligacaoListView" prefHeight="37.0" prefWidth="200.0">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </ListView>
+                                    </ComboBox>
                                     <Button fx:id="VTligacaoEditButton" mnemonicParsing="false" text="Editar" />
                                  </children>
                                  <VBox.margin>
@@ -324,38 +301,8 @@
                               <children>
                                   <VBox prefHeight="690.0" prefWidth="871.0">
                                       <children>
-                                    <HBox prefHeight="46.0" prefWidth="886.0">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </HBox>
-                                          <HBox fx:id="addSearchBox12" prefHeight="72.0" prefWidth="871.0" />
-                                          <HBox fx:id="addSearchBox121" layoutX="10.0" layoutY="52.0" prefHeight="72.0" prefWidth="871.0" />
-                                          <HBox prefHeight="63.0" prefWidth="871.0" />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                               <children>
-                                                  <TableView fx:id="tabelaparadistancia" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="283.0">
-                                                      <columns>
-                                                          <TableColumn fx:id="dadosCacheV" prefWidth="198.0" text="Geocaches" />
-                                                      </columns>
-                                                      <columnResizePolicy>
-                                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                                      </columnResizePolicy>
-                                                      <HBox.margin>
-                                                          <Insets left="20.0" />
-                                                      </HBox.margin>
-                                                  </TableView>
-                                                  <TableView fx:id="tabelaparadistancia1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="294.0">
-                                                      <columnResizePolicy>
-                                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                                      </columnResizePolicy>
-                                                      <columns>
-                                                          <TableColumn fx:id="dadosCacheW" prefWidth="198.0" text="Geocaches" />
-                                                      </columns>
-                                                      <HBox.margin>
-                                                          <Insets left="20.0" />
-                                                      </HBox.margin>
-                                                  </TableView>
                                                   <HBox prefHeight="205.0" prefWidth="280.0">
                                                       <children>
                                                 <VBox prefHeight="200.0" prefWidth="100.0">
