@@ -11,9 +11,8 @@ public class Basic extends Premium {
      * -- CONSTRUCTOR --
      */
 
-    public Basic(int ID, String nome, String perm) {
-        super(ID, nome, perm);
-    }
+    public Basic(int ID, String nome, String perm) { super(ID, nome, perm); }
+    public Basic(String nome, String perm) { super(nome, perm); }
 
     /*---------------------------------------------------------------------------------------------------------------*/
 

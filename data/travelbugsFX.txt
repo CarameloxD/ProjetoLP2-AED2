@@ -1,0 +1,13 @@
+2
+travelbug1, Maria, geocache1, geocache15
+2
+2021, 5, 4, 15, 52, 15, Fernando, admin, Passou pela Cache: geocache1, null
+2021, 5, 4, 15, 52, 15, Fernando, admin, Passou pela Cache: geocache7, null
+travelbug3, Filomena, geocache3, geocache12
+6
+2021, 5, 4, 15, 52, 15, Maria, premium, Passou pela Cache: geocache3, null
+2021, 5, 4, 15, 52, 15, Maria, premium, Passou pela Cache: geocache8, null
+2021, 5, 4, 15, 52, 15, Maria, premium, Passou pela Cache: geocache9, null
+2021, 5, 4, 15, 52, 15, Maria, premium, Passou pela Cache: geocache10, null
+2021, 5, 4, 15, 52, 15, Maria, premium, Passou pela Cache: geocache16, null
+2021, 5, 4, 15, 52, 15, Maria, premium, Passou pela Cache: geocache11, null

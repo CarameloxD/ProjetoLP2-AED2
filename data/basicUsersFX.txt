@@ -1,0 +1,4 @@
+3
+4, Joana, basic, 0
+1, Manuel, basic, 0
+2, Pedro, basic, 1, capa

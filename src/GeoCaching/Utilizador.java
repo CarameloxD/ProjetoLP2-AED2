@@ -12,7 +12,8 @@ public abstract class Utilizador {
      * -- ATRIBUTOS --
      */
 
-    private int ID;
+    static AtomicInteger nextId = new AtomicInteger();
+    private Integer ID;
 
     private String Nome;
 
@@ -32,8 +33,16 @@ public abstract class Utilizador {
         this.ID = ID;
         Nome = nome;
         this.perm = perm;
+        nextId.incrementAndGet();
     }
 
+    /*Inserção na Tabela - ID Automático*/
+
+    public Utilizador(String nome, String perm) {
+        this.ID = nextId.incrementAndGet();
+        Nome = nome;
+        this.perm = perm;
+    }
 
     /*---------------------------------------------------------------------------------------------------------------*/
 
@@ -77,6 +86,18 @@ public abstract class Utilizador {
         return perm;
     }
 
+    public int getN_items() {
+        return Items.size();
+    }
+
+
+    public String getDescricaoItems() {
+        String result = "";
+        for (Item i : this.getItems())
+            result = result.concat(i.getDescricao() + "; ");
+        return result;
+    }
+
     public void setPerm(String perm) {
         this.perm = perm;
     }
@@ -99,6 +120,7 @@ public abstract class Utilizador {
                 System.out.println("\t\t" + ((TravelBug) i).getNome() + ": " + i.getDescricao() + ", " +
                         ((TravelBug) i).getGPS().getLatitude() + ", " + ((TravelBug) i).getGPS().getLongitude() +
                         ", " + ((TravelBug) i).getObjetivo() + ";");
+
         }
         System.out.println("\n}\n");
     }

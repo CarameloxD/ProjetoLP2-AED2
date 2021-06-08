@@ -1,0 +1,86 @@
+3
+7, norte
+geocache6, basic, 41.150497, -8.665469, 0
+3
+2021, 5, 4, 15, 49, 59, Manuel, basic, null, null
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Filomena, admin, null, null
+geocache2, basic, 41.160576, -8.585582, 3, bola, brinquedo, camisola
+3
+2021, 5, 4, 15, 49, 59, Manuel, basic, null, null
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Filomena, admin, null, null
+geocache5, premium, 41.149227, -8.612027, 0
+2
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Filomena, admin, null, null
+geocache1, basic, 41.172085, -8.614818, 3, canudo, livro, oculos
+3
+2021, 5, 4, 15, 49, 59, Manuel, basic, null, null
+2021, 5, 4, 15, 49, 59, Fernando, admin, Passou pela Cache: geocache1, null
+2021, 5, 4, 15, 49, 59, Filomena, admin, null, null
+geocache4, basic, 41.158882, -8.633792, 1, flauta
+1
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+geocache7, basic, 41.242123, -8.68074, 1, bilhetes_aviao
+2
+2021, 5, 4, 15, 49, 59, Fernando, admin, Passou pela Cache: geocache7, null
+2021, 5, 4, 15, 49, 59, Filomena, admin, null, null
+geocache3, basic, 41.166683, -8.67519, 3, pedra, flor, areia
+3
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Maria, premium, Passou pela Cache: geocache3, null
+2021, 5, 4, 15, 49, 59, Filomena, admin, null, null
+5, centro
+geocache12, basic, 40.65978, -7.913692, 1, espada
+2
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Maria, premium, null, null
+geocache9, basic, 40.202732, -8.433374, 0
+2
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Maria, premium, Passou pela Cache: geocache9, null
+geocache10, premium, 40.188892, -8.410378, 2, borracha, chaves
+2
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Maria, premium, Passou pela Cache: geocache10, null
+geocache8, basic, 40.209442, -8.42086, 1, canudo
+5
+2021, 5, 4, 15, 49, 59, Manuel, basic, null, null
+2021, 5, 4, 15, 49, 59, Pedro, basic, null, null
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Maria, premium, Passou pela Cache: geocache8, null
+2021, 5, 4, 15, 49, 59, Filomena, admin, null, null
+geocache11, basic, 40.639412, -8.662137, 1, ovos_moles
+2
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Maria, premium, Passou pela Cache: geocache11, null
+6, sul
+geocache16, premium, 38.752716, -9.186963, 0
+2
+2021, 5, 4, 15, 49, 59, Manuel, basic, null, null
+2021, 5, 4, 15, 49, 59, Maria, premium, Passou pela Cache: geocache16, null
+geocache17, basic, 38.761234, -9.163984, 0
+3
+2021, 5, 4, 15, 49, 59, Manuel, basic, null, null
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Joana, basic, null, null
+geocache13, basic, 38.694256, -9.212946, 0
+5
+2021, 5, 4, 15, 49, 59, Manuel, basic, null, null
+2021, 5, 4, 15, 49, 59, Pedro, basic, null, null
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Joana, basic, null, null
+2021, 5, 4, 15, 49, 59, Filomena, admin, null, null
+geocache18, basic, 38.93693, -9.32906, 0
+3
+2021, 5, 4, 15, 49, 59, Pedro, basic, null, null
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Joana, basic, null, null
+geocache14, basic, 38.728848, -9.148186, 0
+1
+2021, 5, 4, 15, 49, 59, Joana, basic, null, null
+geocache15, basic, 38.775642, -9.132531, 1, bilhetes_aviao
+2
+2021, 5, 4, 15, 49, 59, Fernando, admin, null, null
+2021, 5, 4, 15, 49, 59, Joana, basic, null, null

@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <MenuBar layoutX="-7.0" layoutY="-3.0" prefHeight="25.0" prefWidth="1012.0">
+           <menus>
+               <Menu id="fileMenu" mnemonicParsing="false" text="File">
+                   <items>
+                       <MenuItem fx:id="infoTxtMenu" mnemonicParsing="false" onAction="#handleCarregarInfoTXT" text="Carregar Info Txt" />
+                  <MenuItem fx:id="graphTxtMenu" mnemonicParsing="false" text="Carregar Grafo Txt" />
+                  <MenuItem fx:id="infoBinMenu" mnemonicParsing="false" text="Carregar Info Bin" />
+                  <MenuItem fx:id="graphBinMenu" mnemonicParsing="false" text="Carregar Grafo Bin" />
+                  <MenuItem fx:id="graphBinSaveMenu" mnemonicParsing="false" text="Gravar Grafo Bin" />
+                  <MenuItem fx:id="infoSaveTxtMenu" mnemonicParsing="false" text="Gravar Info Txt" />
+                  <MenuItem fx:id="graphTxtSaveMenu" mnemonicParsing="false" text="Gravar Grafo Txt" />
+                  <MenuItem fx:id="infoSaveBinMenu" mnemonicParsing="false" text="Gravar Info Bin" />
+                   </items></Menu>
+           </menus>
+       </MenuBar>
+       <TabPane layoutY="22.0" prefHeight="629.0" prefWidth="1005.0" tabClosingPolicy="UNAVAILABLE">
+           <tabs>
+               <Tab text="Geocaching">
+                   <content>
+                  <Pane>
+                     <children>
+                               <VBox prefHeight="578.0" prefWidth="972.0">
+                                   <children>
+                              <HBox prefHeight="30.0" prefWidth="972.0">
+                                 <children>
+                                    <ComboBox fx:id="regiaoCombo" prefWidth="150.0" promptText="Região">
+                                       <HBox.margin>
+                                          <Insets left="110.0" right="10.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <ComboBox fx:id="dificuldadeCombo" prefWidth="150.0" promptText="Dificuldade">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <ComboBox fx:id="tipoCombo" prefWidth="150.0" promptText="Tipo">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <ComboBox fx:id="partidaCombo" prefWidth="150.0" promptText="Partida">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <ComboBox fx:id="destinoCombo" prefWidth="150.0" promptText="Destino" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                                       <Pane fx:id="graphPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100" minWidth="100" snapToPixel="false">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="50.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Separator layoutY="228.0" prefHeight="0.0" prefWidth="932.0" />
+                                    <Separator layoutX="465.0" layoutY="-7.0" orientation="VERTICAL" prefHeight="472.0" prefWidth="0.0" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Pane>
+                                   </children>
+                                   <opaqueInsets>
+                                       <Insets />
+                                   </opaqueInsets>
+                               </VBox>
+                     </children>
+                  </Pane>
+                   </content>
+               </Tab>
+               <Tab text="Vertices / Edges">
+                   <content>
+                           <Pane prefHeight="414.0" prefWidth="932.0">
+                     <children>
+                        <HBox layoutX="14.0" layoutY="78.0" prefHeight="25.0" prefWidth="978.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="56.0" text="Geocache">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="VTnomeTextField" prefHeight="25.0" prefWidth="99.0" promptText="nome">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="VTregiaoTextField" prefHeight="25.0" prefWidth="99.0" promptText="região">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="VTxTextField" prefHeight="25.0" prefWidth="99.0" promptText="coordenada X">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="VTyTextField" prefHeight="25.0" prefWidth="99.0" promptText="coordenada Y">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="VTpInteresseTextField" prefHeight="25.0" prefWidth="99.0" promptText="Ponto Interesse">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="VTdificuldadeTextField" prefHeight="25.0" prefWidth="99.0" promptText="Dificuldade">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="VTtipoTextField" prefHeight="25.0" prefWidth="99.0" promptText="Tipo">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                                         <Button fx:id="VTadd1Button" mnemonicParsing="false" text="Adicionar">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="13.0" layoutY="275.0" prefHeight="25.0" prefWidth="839.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="56.0" text="Geocache">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ListView fx:id="VT1ListViewCache" prefHeight="37.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ListView>
+                              <Button fx:id="VTremoveButton" mnemonicParsing="false" text="Remover" />
+                           </children>
+                        </HBox>
+                        <Label layoutX="147.0" layoutY="31.0" prefHeight="17.0" prefWidth="131.0" scaleX="3.0" scaleY="3.0" text="Adicionar Vertice / Edge" />
+                        <Separator layoutX="13.0" layoutY="186.0" prefHeight="18.0" prefWidth="980.0" />
+                        <Label layoutX="163.0" layoutY="221.0" prefHeight="17.0" prefWidth="150.0" scaleX="3.0" scaleY="3.0" text="Remover Vertice e Edges" />
+                        <Separator layoutX="13.0" layoutY="308.0" prefHeight="18.0" prefWidth="979.0" />
+                        <Label layoutX="136.0" layoutY="333.0" prefHeight="25.0" prefWidth="123.0" scaleX="3.0" scaleY="3.0" text="Editar Vertice / Edge" />
+                        <VBox layoutX="16.0" layoutY="392.0" prefHeight="68.0" prefWidth="913.0">
+                           <children>
+                              <HBox prefHeight="25.0" prefWidth="839.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="56.0" text="Geocache">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ListView fx:id="VT2ListViewCache" prefHeight="37.0" prefWidth="200.0">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ListView>
+                                    <Button fx:id="VTeditButton" mnemonicParsing="false" text="Editar" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="25.0" prefWidth="978.0">
+                                 <children>
+                                    <TextField fx:id="VTedit1TF" prefHeight="25.0" prefWidth="99.0" promptText="nome">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="VTedit2TF" prefHeight="25.0" prefWidth="99.0" promptText="região">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="VTedit3TF" prefHeight="25.0" prefWidth="99.0" promptText="coordenada X">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="VTedit4TF" prefHeight="25.0" prefWidth="99.0" promptText="coordenada Y">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="VTedit5TF" prefHeight="25.0" prefWidth="99.0" promptText="Ponto Interesse">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="VTedit6TF" prefHeight="25.0" prefWidth="99.0" promptText="Dificuldade">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="VTedit7TF" prefHeight="25.0" prefWidth="99.0" promptText="Tipo">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="VT1confirmButton" mnemonicParsing="false" text="Confirmar">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="16.0" layoutY="488.0" prefHeight="68.0" prefWidth="913.0">
+                           <children>
+                              <HBox prefHeight="25.0" prefWidth="839.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="56.0" text="Ligação">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ListView fx:id="VTligacaoListView" prefHeight="37.0" prefWidth="200.0">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ListView>
+                                    <Button fx:id="VTligacaoEditButton" mnemonicParsing="false" text="Editar" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="25.0" prefWidth="978.0">
+                                 <children>
+                                    <TextField fx:id="VT1edgeEditTF" prefHeight="25.0" prefWidth="99.0" promptText="Geocache v">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Label prefHeight="6.0" prefWidth="14.0" scaleX="3.0" scaleY="4.0" text="🠒">
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="VT2edgeEditTF" prefHeight="25.0" prefWidth="99.0" promptText="Geocache w">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="VT3edgeEditTF" prefHeight="25.0" prefWidth="99.0" promptText="Distancia (km)">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="VT4edgeEditTF" prefHeight="25.0" prefWidth="99.0" promptText="Tempo (min)">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="VT2confirmButton" mnemonicParsing="false" text="Confirmar">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator layoutX="13.0" layoutY="460.0" prefHeight="18.0" prefWidth="980.0" />
+                        <HBox layoutX="80.0" layoutY="146.0" prefHeight="25.0" prefWidth="978.0">
+                           <children>
+                              <TextField fx:id="VTvCache" prefHeight="25.0" prefWidth="99.0" promptText="Geocache v">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Label prefHeight="6.0" prefWidth="14.0" scaleX="3.0" scaleY="4.0" text="🠒">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="VTwCache" prefHeight="25.0" prefWidth="99.0" promptText="Geocache w">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="VTdistanciaAdd" prefHeight="25.0" prefWidth="99.0" promptText="Distancia (km)">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="VTtempoAdd" prefHeight="25.0" prefWidth="99.0" promptText="Tempo (min)">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="VTadd2Button" mnemonicParsing="false" text="Adicionar">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label layoutX="13.0" layoutY="146.0" prefHeight="25.0" prefWidth="56.0" text="Ligação" />
+                        <Separator layoutX="13.0" layoutY="115.0" prefHeight="18.0" prefWidth="980.0" />
+                     </children>
+                           </Pane>
+                   </content>
+               </Tab>
+
+               <Tab text="searchGraph">
+                   <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                          <AnchorPane layoutY="-4.0" minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="865.0">
+                              <children>
+                                  <VBox prefHeight="690.0" prefWidth="871.0">
+                                      <children>
+                                    <HBox prefHeight="46.0" prefWidth="886.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
+                                          <HBox fx:id="addSearchBox12" prefHeight="72.0" prefWidth="871.0" />
+                                          <HBox fx:id="addSearchBox121" layoutX="10.0" layoutY="52.0" prefHeight="72.0" prefWidth="871.0" />
+                                          <HBox prefHeight="63.0" prefWidth="871.0" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                              <children>
+                                                  <TableView fx:id="tabelaparadistancia" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="283.0">
+                                                      <columns>
+                                                          <TableColumn fx:id="dadosCacheV" prefWidth="198.0" text="Geocaches" />
+                                                      </columns>
+                                                      <columnResizePolicy>
+                                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                      </columnResizePolicy>
+                                                      <HBox.margin>
+                                                          <Insets left="20.0" />
+                                                      </HBox.margin>
+                                                  </TableView>
+                                                  <TableView fx:id="tabelaparadistancia1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="294.0">
+                                                      <columnResizePolicy>
+                                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                      </columnResizePolicy>
+                                                      <columns>
+                                                          <TableColumn fx:id="dadosCacheW" prefWidth="198.0" text="Geocaches" />
+                                                      </columns>
+                                                      <HBox.margin>
+                                                          <Insets left="20.0" />
+                                                      </HBox.margin>
+                                                  </TableView>
+                                                  <HBox prefHeight="205.0" prefWidth="280.0">
+                                                      <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                              <ComboBox fx:id="vCache" prefWidth="150.0" promptText="Partida">
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" top="20.0" />
+                                                         </VBox.margin>
+                                                              </ComboBox>
+                                                      <Label prefHeight="28.0" prefWidth="9.0" scaleX="5.0" scaleY="3.0" text="🠗">
+                                                         <padding>
+                                                            <Insets left="30.0" top="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                              <ComboBox fx:id="wCache" prefWidth="150.0" promptText="Destino">
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" top="30.0" />
+                                                         </VBox.margin>
+                                                              </ComboBox>
+                                                              <Button fx:id="distanceButton" mnemonicParsing="false" text="Calcule Dist">
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" left="57.0" top="20.0" />
+                                                         </VBox.margin>
+                                                              </Button>
+                                                                <TextField fx:id="resultDistance" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" promptText="Result">
+                                                                    <padding>
+                                                                        <Insets right="20.0" />
+                                                                    </padding>
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </VBox.margin>
+                                                                </TextField>
+                                                   </children>
+                                                </VBox>
+                                                      </children>
+                                                      <HBox.margin>
+                                                          <Insets right="20.0" />
+                                                      </HBox.margin>
+                                                  </HBox>
+                                              </children>
+                                          </HBox>
+                                      </children>
+                                  </VBox>
+                              </children>
+                          </AnchorPane>
+                     </children></AnchorPane>
+                   </content>
+               </Tab>
+
+
+
+          <Tab text="ST'S">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="556.0" prefWidth="926.0">
+                     <children>
+                        <TabPane prefHeight="550.0" prefWidth="972.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                              <Tab text="Utilizadores">
+                                 <content>
+                                    <AnchorPane>
+                                       <children>
+                                          <TableView fx:id="usersTable" prefHeight="400.0" prefWidth="972.0">
+                                             <columns>
+                                                <TableColumn fx:id="idUtilizadores" onEditCommit="#handleEditarUserId" prefWidth="75.0" text="ID" />
+                                                <TableColumn fx:id="nomeUtilizadores" onEditCommit="#handleEditarUserNome" prefWidth="75.0" text="Nome" />
+                                                <TableColumn fx:id="tipoUtilizadores" onEditCommit="#handleEditarUserTipo" prefWidth="75.0" text="Tipo" />
+                                                <TableColumn fx:id="nItemsUtilizadores" prefWidth="100.0" text="Numero Items" />
+                                                <TableColumn fx:id="itemsUtilizadores" onEditCommit="#handleEditarUserItems" prefWidth="94.0" text="Items" />
+                                             </columns>
+                                          </TableView>
+                                          <VBox layoutX="2.0" layoutY="398.0" prefHeight="174.0" prefWidth="972.0">
+                                             <children>
+                                                <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="976.0" snapToPixel="false">
+                                                   <children>
+                                                      <TextField fx:id="nomeUtilizadoresTextField" prefHeight="26.0" prefWidth="106.0" promptText="Nome">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="tipoUtilizadoresTextField" prefHeight="26.0" prefWidth="106.0" promptText="Tipo">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="itemsUtilizadoresTextField" prefHeight="26.0" prefWidth="106.0" promptText="Items">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <Button fx:id="adicionarUtilizadores" mnemonicParsing="false" onAction="#handleAdicionarUtilizador" text="Adicionar">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button fx:id="removerUtilizadores" mnemonicParsing="false" onAction="#handleRemoveUserAction" text="Remover">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                            <Tab text="Geocaches">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="geocachesTable" prefHeight="400.0" prefWidth="972.0">
+                                            <columns>
+                                              <TableColumn fx:id="nomeGeocaches" onEditCommit="#handleEditarCacheNome" prefWidth="75.0" text="Nome" />
+                                              <TableColumn fx:id="tipoGeocaches" onEditCommit="#handleEditarCacheTipo" prefWidth="75.0" text="Tipo" />
+                                                <TableColumn fx:id="regiaoGeocaches" onEditCommit="#handleEditarCacheRegiao" prefWidth="75.0" text="Região" />
+                                                <TableColumn onEditCommit="#handleEditarCacheX" prefWidth="104.0" text="Coordenada X" fx:id="xGeocaches" />
+                                                <TableColumn fx:id="yGeocaches" onEditCommit="#handleEditarCacheY" prefWidth="96.0" text="Coordenada Y" />
+                                                <TableColumn fx:id="nItemsGeocaches" prefWidth="107.0" text="Numero Items" />
+                                                <TableColumn fx:id="itemsGeocaches" onEditCommit="#handleEditarCacheItems" prefWidth="82.0" text="Items" />
+                                            </columns>
+                                          </TableView>
+                                          <VBox layoutX="2.0" layoutY="401.0" prefHeight="174.0" prefWidth="972.0">
+                                             <children>
+                                                <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="976.0" snapToPixel="false">
+                                                   <children>
+                                                      <TextField fx:id="nomeGeocachesTextField" prefHeight="26.0" prefWidth="106.0" promptText="Nome">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="tipoGeocachesTextField" prefHeight="26.0" prefWidth="106.0" promptText="Tipo">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="regiaoGeocachesTextField" prefHeight="26.0" prefWidth="106.0" promptText="Região">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField prefHeight="26.0" prefWidth="106.0" promptText="x" fx:id="xGeocachesTextField">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="yGeocachesTextField" prefHeight="26.0" prefWidth="106.0" promptText="y">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="itemsGeocachesTextField" prefHeight="26.0" prefWidth="106.0" promptText="Items">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="976.0" snapToPixel="false">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <children>
+                                                      <Button fx:id="adicionarGeocaches" mnemonicParsing="false" onAction="#handleAdicionarCache" text="Adicionar">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" right="20.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button fx:id="removerGeocaches" mnemonicParsing="false" onAction="#handleRemoveCacheAction" text="Remover" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="Logs">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="logsTable" layoutY="-1.0" prefHeight="400.0" prefWidth="972.0">
+                                            <columns>
+                                                <TableColumn fx:id="geocacheLog" onEditCommit="#handleEditarGeocacheLog" prefWidth="137.0" text="Geocache" />
+                                              <TableColumn fx:id="dataLogs" prefWidth="137.0" text="Data Registo" />
+                                                <TableColumn fx:id="infoLogs" onEditCommit="#handleEditarInfoLog" prefWidth="266.0" text="Info" />
+                                                <TableColumn fx:id="mensagemLogs" minWidth="0.0" onEditCommit="#handleEditarMensagemLog" prefWidth="217.0" text="Mensagem" />
+                                            </columns>
+                                          </TableView>
+                                          <VBox layoutY="399.0" prefHeight="174.0" prefWidth="972.0">
+                                             <children>
+                                                <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="976.0" snapToPixel="false">
+                                                   <children>
+                                                      <TextField fx:id="cacheLogsTextField" layoutX="30.0" layoutY="10.0" prefHeight="26.0" prefWidth="106.0" promptText="Cache" />
+                                                      <TextField fx:id="dataLogsTextField" prefHeight="26.0" prefWidth="106.0" promptText="Data Registo">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="infoLogsTextField" prefHeight="26.0" prefWidth="106.0" promptText="Info">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="mensagemLogsTextField" prefHeight="26.0" prefWidth="106.0" promptText="Mensagem">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <Button fx:id="addLogs" mnemonicParsing="false" onAction="#handleAdicionarLog" text="Adicionar">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" right="20.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button fx:id="removeLogs" mnemonicParsing="false" text="Remover" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                              <Tab text="TravelBugs">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="545.0" prefWidth="972.0">
+                                       <children>
+                                          <TableView fx:id="travelbugsTable" prefHeight="385.0" prefWidth="972.0">
+                                            <columns>
+                                              <TableColumn fx:id="nomeTravelBugs" onEditCommit="#handleEditarTBNome" prefWidth="75.0" text="Nome" />
+                                              <TableColumn fx:id="userTravelBugs" onEditCommit="#handleEditarTBUser" prefWidth="75.0" text="Utilizador" />
+                                                <TableColumn fx:id="cacheTravelBugs" onEditCommit="#handleEditarTBCache" prefWidth="92.0" text="Cache Inicial" />
+                                                <TableColumn fx:id="objetivoTravelBugs" onEditCommit="#handleEditarTBObjetivo" prefWidth="77.0" text="Objetivo" />
+                                            </columns>
+                                          </TableView>
+                                          <VBox layoutY="385.0" prefHeight="174.0" prefWidth="972.0">
+                                             <children>
+                                                <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="976.0" snapToPixel="false">
+                                                   <children>
+                                                      <TextField fx:id="nomeTravelBugsTextField" prefHeight="26.0" prefWidth="106.0" promptText="Nome">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="userTravelBugsTextField" prefHeight="26.0" prefWidth="106.0" promptText="Utilizador">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="cacheTravelBugsTextField" prefHeight="26.0" prefWidth="106.0" promptText="Cache Inicial">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="objetivoTravelBugsTextField" prefHeight="26.0" prefWidth="106.0" promptText="Objetivo">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <Button fx:id="addTravelBugs" mnemonicParsing="false" onAction="#handleAdicionarTravelBug" text="Adicionar">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" right="20.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button fx:id="removeTravelBugs" mnemonicParsing="false" onAction="#handleRemoveTravelBugAction" text="Remover" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="976.0" snapToPixel="false">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                              <Tab text="Historico TB">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="534.0" prefWidth="972.0">
+                                       <children>
+                                          <TableView fx:id="historicoTable" prefHeight="392.0" prefWidth="972.0">
+                                             <columns>
+                                                <TableColumn fx:id="travelbugHistoricoTB" minWidth="0.0" onEditCommit="#handleEditarGeocacheHistorico" prefWidth="259.0" text="TravelBug" />
+                                                <TableColumn fx:id="dataHistoricoTB" prefWidth="135.0" text="Data Registo" />
+                                                <TableColumn fx:id="infoHistoricoTB" onEditCommit="#handleEditarInfoHistorico" prefWidth="274.0" text="Info" />
+                                                <TableColumn fx:id="mensagemHistoricoTB" minWidth="0.0" prefWidth="259.0" text="Mensagem" />
+                                             </columns>
+                                          </TableView>
+                                          <VBox layoutY="392.0" prefHeight="174.0" prefWidth="972.0">
+                                             <children>
+                                                <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="976.0" snapToPixel="false">
+                                                   <children>
+                                                      <TextField fx:id="travelbugHistoricoTBTextField" layoutX="30.0" layoutY="10.0" prefHeight="26.0" prefWidth="106.0" promptText="TravelBug" />
+                                                      <TextField fx:id="dataHistoricoTBTextField" prefHeight="26.0" prefWidth="106.0" promptText="Data Registo">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="infoHistoricoTBTextField" prefHeight="26.0" prefWidth="106.0" promptText="Info">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="mensagemHistoricoTBTextField" prefHeight="26.0" prefWidth="106.0" promptText="Mensagem">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <Button fx:id="addHistoricoTB" mnemonicParsing="false" onAction="#handleAdicionarHistorico" text="Adicionar">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" right="20.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button fx:id="removeHistoricoTB" mnemonicParsing="false" onAction="#handleRemoveLogTravelBugAction" text="Remover" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="976.0" snapToPixel="false">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

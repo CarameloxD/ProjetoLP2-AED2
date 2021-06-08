@@ -25,7 +25,7 @@ public class Main {
     public static SeparateChainingHashST<Integer, Premium> premiums = new SeparateChainingHashST<>();
     public static SeparateChainingHashST<String, Cache> caches = new SeparateChainingHashST<>();
     private static ArrayList<ligacoesCaches> ligacoes = new ArrayList<>();
-    private static RedBlackBST<String, TravelBug> travelbugs = new RedBlackBST<>();
+    public static RedBlackBST<String, TravelBug> travelbugs = new RedBlackBST<>();
 
     public static void main(String[] args) throws IOException {
         leituraFicheiroTxt(inputxt);
@@ -179,7 +179,7 @@ public class Main {
      *
      * @param c Objeto do tipo Cache a add;
      */
-    private static void addCache(Cache c) {
+    public static void addCache(Cache c) {
         if (caches.contains(c.getNome())) {
             System.out.println("Erro, cache ja existe na DB!");
             return;
@@ -219,6 +219,15 @@ public class Main {
         caches.get(name).setPontoInteresse(pontoInteresse);
         caches.get(name).setDificuldade(dificuldade);
         caches.get(name).setTipo(tipo);
+    }
+
+    public static Cache getCache(String nome){
+        for (String s : caches.keys()){
+            if(s.equals(nome)){
+                return caches.get(s);
+            }
+        }
+        return null;
     }
 
     /**
@@ -467,18 +476,18 @@ public class Main {
                 String line = in.readLine();
                 String[] fields = line.split(", ");
                 switch (fields[2]) {
-                    case "basic" -> {
+                    case "basic" :
                         Basic b = new Basic(Integer.parseInt(fields[0]), fields[1], fields[2]);
                         addBasicUser(b);
                     }
                     case "premium" -> {
                         Premium p = new Premium(Integer.parseInt(fields[0]), fields[1], fields[2]);
                         addPremiumUser(p);
-                    }
-                    case "admin" -> {
+                        break;
+                    case "admin" :
                         Admin a = new Admin(Integer.parseInt(fields[0]), fields[1], fields[2]);
                         addAdminUser(a);
-                    }
+                        break;
                 }
             }
             int m = Integer.parseInt(in.readLine());
@@ -529,10 +538,9 @@ public class Main {
         int nUtilizadores = basics.size() + premiums.size() + admins.size();
         wr.write(String.valueOf(nUtilizadores) + "\n");
         for (Integer i : basics.keys()) {
-            wr.write(basics.get(i).getID() + ", " + basics.get(i).getNome() + ", " + basics.get(i).getPerm() + "\n");
-            wr.write(basics.get(i).getItems().size() + "\n");
+            wr.write(basics.get(i).getID() + ", " + basics.get(i).getNome() + ", " + basics.get(i).getPerm() + ", " + basics.get(i).getItems().size());
             for (Item item : basics.get(i).getItems()) {
-                wr.write(item.getDescricao() + "; ");
+                wr.write(", " + item.getDescricao());
             }
             wr.write("\n");
         }
@@ -540,15 +548,14 @@ public class Main {
             wr.write(premiums.get(i).getID() + ", " + premiums.get(i).getNome() + ", " + premiums.get(i).getPerm() + "\n");
             wr.write(premiums.get(i).getItems().size() + "\n");
             for (Item item : premiums.get(i).getItems()) {
-                wr.write(item.getDescricao() + "; ");
+                wr.write(", " + item.getDescricao());
             }
             wr.write("\n");
         }
         for (Integer i : admins.keys()) {
-            wr.write(admins.get(i).getID() + ", " + admins.get(i).getNome() + ", " + admins.get(i).getPerm() + "\n");
-            wr.write(admins.get(i).getItems().size() + "\n");
+            wr.write(admins.get(i).getID() + ", " + admins.get(i).getNome() + ", " + admins.get(i).getPerm() + ", " + admins.get(i).getItems().size());
             for (Item item : admins.get(i).getItems()) {
-                wr.write(item.getDescricao() + "; ");
+                wr.write(", " + item.getDescricao());
             }
             wr.write("\n");
         }
@@ -569,13 +576,12 @@ public class Main {
                 wr.write(cache.getNome() + ", " + cache.getTipo() + ", " + cache.getGPS().getLatitude() + ", " +
                         cache.getGPS().getLongitude() + ", " + String.valueOf(cache.getItems().size()));
                 for (Item i : cache.getItems()) {
-                    wr.write(i.getDescricao() + "; ");
+                    wr.write(", " + i.getDescricao());
                 }
-                wr.write("\n");
+                wr.write("\n" + cache.getLogs().size() + "\n");
                 for (int i : cache.getLogs().keys()) {
-                    wr.write(cache.getLogs().get(i).toString() + "\n");
+                    wr.write(cache.getLogs().get(i).toString());
                 }
-                wr.write("\n");
             }
 
         }
@@ -590,9 +596,10 @@ public class Main {
         wr.write(travelbugs.size() + "\n");
         for (String nome : travelbugs.keys()) {
             wr.write(travelbugs.get(nome).getNome() + ", " + travelbugs.get(nome).getNomeCriador() + ", " +
-                    travelbugs.get(nome).getCacheInicial() + ", " + travelbugs.get(nome).getObjetivo() + "\n");
+                    travelbugs.get(nome).getCacheInicial() + ", " + travelbugs.get(nome).getObjetivo());
+            wr.write("\n" + travelbugs.get(nome).getHistorico().size() + "\n");
             for (int i : travelbugs.get(nome).getHistorico().keys()) {
-                wr.write(travelbugs.get(nome).getHistorico().get(i).toString() + "\n");
+                wr.write(travelbugs.get(nome).getHistorico().get(i).toString());
             }
         }
         wr.close();

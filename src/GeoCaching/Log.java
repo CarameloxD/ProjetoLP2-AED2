@@ -66,11 +66,30 @@ public class Log {
         UserID = userID;
     }
 
+    public String getCacheTravelBug() {
+        for(String s : caches.keys())
+            if(caches.get(s).getLogs().contains(this.getId()))
+                return caches.get(s).getNome();
+        for(String s : travelbugs.keys())
+            if(travelbugs.get(s).getHistorico().contains(this.getId()))
+                return travelbugs.get(s).getNome();
+        return null;
+    }
+
+    public String getData() {
+        return date.getYear() + ", " + date.getMonth() + ", " + date.getDay() + ", " + date.getHours() + ", " +
+                date.getMinutes() + ", " + date.getSeconds();
+    }
+    /*---------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * -- ToString --
+     */
+
     @Override
     public String toString() {
-        return "Log{" +
-                "\tRegistado em: " + date.getYear() + "/" + date.getMonth() + "/" + date.getDay() + " - " +
-                date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + ", " + this.Info +
-                " -> Mensagem: '" + Mensagem + "' }";
+        return date.getYear() + ", " + date.getMonth() + ", " + date.getDay() + ", " +
+                date.getHours() + ", " + date.getMinutes() + ", " + date.getSeconds() + ", " + this.Info +
+                ", " + Mensagem + "\n";
     }
 }
