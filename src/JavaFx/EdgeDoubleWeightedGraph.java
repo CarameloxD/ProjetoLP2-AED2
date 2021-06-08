@@ -1,7 +1,5 @@
 package JavaFx;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 import edu.princeton.cs.algs4.*;
@@ -90,15 +88,8 @@ public class EdgeDoubleWeightedGraph {
 
     }
 
-    public ArrayList<EdgeDoubleWeighted> getAdj(Integer id) {
-        ArrayList<EdgeDoubleWeighted> bag = new ArrayList<>();
-        for (EdgeDoubleWeighted a : this.edges()) {
-            if (a.getV() == id)
-                bag.add(a);
-            else if (a.getW() == id)
-                bag.add(a);
-        }
-        return bag;
+    public Bag<EdgeDoubleWeighted>[] getAdj() {
+        return adj;
     }
 
     public void setAdj(Bag<EdgeDoubleWeighted>[] adj) {
